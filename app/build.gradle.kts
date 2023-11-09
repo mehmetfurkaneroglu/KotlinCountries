@@ -70,4 +70,7 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.0")
     // To use Kotlin Symbol Processing (KSP)
     //ksp("androidx.room:room-compiler:$room_version")
+    //Add the SwipeRefreshLayout Widget
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+
 }

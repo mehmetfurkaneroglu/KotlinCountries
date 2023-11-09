@@ -6,7 +6,7 @@
     app:startDestination="@id/feedFragment">
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.example.countries.FeedFragment"
+        android:name="com.example.countries.view.FeedFragment"
         android:label="FeedFragment" >
         <action
             android:id="@+id/action_feedFragment_to_countryFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/countryFragment"
-        android:name="com.example.countries.CountryFragment"
+        android:name="com.example.countries.view.CountryFragment"
         android:label="CountryFragment" >
         <action
             android:id="@+id/action_countryFragment_to_feedFragment"
