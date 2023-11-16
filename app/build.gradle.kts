@@ -72,5 +72,11 @@ dependencies {
     //ksp("androidx.room:room-compiler:$room_version")
     //Add the SwipeRefreshLayout Widget
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+    //RxJava
+    implementation ("io.reactivex.rxjava3:rxjava:3.0.6")
+    implementation ("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
+    implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")
+
+
 
 }
