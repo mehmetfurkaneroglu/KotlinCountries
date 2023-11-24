@@ -98,10 +98,23 @@ class CountryAdapter(val countryList: ArrayList<Country>) :
         holder.itemBinding.name.text = country.countryName
         holder.itemBinding.region.text = country.countryRegion
 
+// Arguments kullanarak yapılan bu // HATA , arguments ÇALIŞMIYOR NEDENİNİ SOR !!!!!!!
+        /*
         holder.itemView.setOnClickListener {
             val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment()
             Navigation.findNavController(it).navigate(action)
         }
+         */
+
+// Bundle kullanarak yapılan bu
+// /*
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("countryUUID",country.uuid)
+            Navigation.findNavController(it).navigate(R.id.action_feedFragment_to_countryFragment,bundle)
+        }
+
+// */
 
         //holder.itemBinding.flagImage.downloadFromUrl(countryList[position].imageUrl!!,
         holder.itemBinding.flagImage.downloadFromUrl(countryList[position].imageUrl.orEmpty(), //countryList[position].imageUrl ifadesinin tipinin String? (nullable String) olmasından kaynaklanıyor gibi görünüyor. downloadFromUrl fonksiyonu muhtemelen bir String tipi bekliyor, ancak bu ifade nullable bir String içeriyor olabilir.

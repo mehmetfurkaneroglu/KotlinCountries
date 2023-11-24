@@ -12,5 +12,7 @@ buildscript {
     }
     dependencies {
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.5")
+        classpath ("com.android.tools.build:gradle:3.2.0")
+
     }
 }

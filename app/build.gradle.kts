@@ -1,8 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
+    //id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
+    //id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs")
+    id ("kotlin-kapt")
     //id("org.jetbrains.kotlin.kapt") version "1.9.20"
 }
 
@@ -33,12 +35,20 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
     buildFeatures{
         viewBinding = true
         dataBinding = true
+    }
+    kapt {
+        generateStubs = true
     }
 }
 
@@ -54,6 +64,8 @@ dependencies {
 
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     // Navigation Component
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.5")
@@ -65,18 +77,18 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
     implementation("androidx.room:room-runtime:2.6.0")
+    implementation("androidx.room:room-ktx:2.6.0") // Coroutine desteği için bu satırı ekleyin
     annotationProcessor("androidx.room:room-compiler:2.6.0")
     // To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:2.6.0")
     // To use Kotlin Symbol Processing (KSP)
-    //ksp("androidx.room:room-compiler:$room_version")
+    //ksp("androidx.room:room-compiler:2.5.0")
     //Add the SwipeRefreshLayout Widget
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
     //RxJava
     implementation ("io.reactivex.rxjava3:rxjava:3.0.6")
     implementation ("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
     implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")
-
 
 
 }

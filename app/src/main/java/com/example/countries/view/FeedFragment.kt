@@ -126,7 +126,8 @@ class FeedFragment : Fragment() {
             binding.countryList.visibility = View.GONE
             binding.countryError.visibility = View.GONE
             //binding.countryLoading.visibility = View.VISIBLE
-            viewModel.refreshData()
+            //viewModel.refreshData() // sayfayı yenileyince apı dan indirsin diye bu işlemi yaptık
+            viewModel.refreshFromAPI()
             binding.swipeRefreshLayout.isRefreshing = false
         }
 

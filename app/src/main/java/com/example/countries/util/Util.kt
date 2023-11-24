@@ -11,7 +11,7 @@ import java.lang.reflect.Parameter
 // Extension
 
 // GLide'ı tekrar tekrar tanımlamadan buradan çağıracağım.
-fun ImageView.downloadFromUrl(url: String,progressDrawable: CircularProgressDrawable ) {
+fun ImageView.downloadFromUrl(url: String,progressDrawable: CircularProgressDrawable) {
 
     val options = RequestOptions()
         .placeholder(progressDrawable) // placeholder : resim inene kadar ne göstereceğim onu gösteriyor

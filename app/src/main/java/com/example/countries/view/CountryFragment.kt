@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.countries.databinding.FragmentCountryBinding
+import com.example.countries.util.downloadFromUrl
+import com.example.countries.util.placeholderProgressBar
 import com.example.countries.viewmodel.CountryViewModel
 import com.example.countries.viewmodel.FeedViewModel
 
@@ -35,23 +37,26 @@ class CountryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-/*
-        binding.button2.setOnClickListener {
-            val action =CountryFragmentDirections.actionCountryFragmentToFeedFragment()
-            Navigation.findNavController(it).navigate(action)
-            //Navigation.findNavController(it).navigate(R.id.action_countryFragment_to_feedFragment)
-        }
+        /*
+                binding.button2.setOnClickListener {
+                    val action =CountryFragmentDirections.actionCountryFragmentToFeedFragment()
+                    Navigation.findNavController(it).navigate(action)
+                    //Navigation.findNavController(it).navigate(R.id.action_countryFragment_to_feedFragment)
+                }
 
- */
- /*
+         */
+        /*
         arguments?.let {
             countryUuid = CountryFragmentArgs.fromBundle(it).countryUuid
         }
+         */
+        arguments?.let {
+            countryUuid = it.getInt("countryUUID",0)
+        }
 
-  */
         //viewModel = ViewModelProviders.of(this).get(CountryViewModel::class.java) //ViewModelProviders, of() kaldırıldı
         viewModel = ViewModelProvider(this).get(CountryViewModel::class.java)
-        viewModel.getDataFromRoom()
+        viewModel.getDataFromRoom(countryUuid)
 
         observeLiveData()
     }
@@ -64,6 +69,29 @@ class CountryFragment : Fragment() {
                 binding.countryCapitalName.text = country.countryCapital
                 binding.countryLanguage.text = country.countryLanguage
                 binding.countryRegionName.text = country.countryRegion
+// RESİMLERİ ALMAK İÇİN YAPTIĞIMIZ
+/*
+                context?.let {
+                    binding.countryFlagImage.downloadFromUrl(country.imageUrl, placeholderProgressBar(it))
+                }
+*/
+
+                context?.let {
+                    val imageUrl = country.imageUrl!!
+                    binding.countryFlagImage.downloadFromUrl(imageUrl, placeholderProgressBar(it))
+                }
+
+
+
+// burada böyle yapılabilir, RESİM İÇİN
+/*
+            binding.countryFlagImage.downloadFromUrl(country.imageUrl.toString(),null)
+
+            holder.itemBinding.flagImage.downloadFromUrl(countryList[position].imageUrl.orEmpty(), //countryList[position].imageUrl ifadesinin tipinin String? (nullable String) olmasından kaynaklanıyor gibi görünüyor. downloadFromUrl fonksiyonu muhtemelen bir String tipi bekliyor, ancak bu ifade nullable bir String içeriyor olabilir.
+                 placeholderProgressBar(holder.itemView.context)
+            )
+*/
+
             }
         })
     }
